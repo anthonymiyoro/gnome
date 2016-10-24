@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-{% extends "base.html" %}
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        {% extends "base.html" %}
 
-{% block content %}
+        {% block content %}
 
 
-{{ object.title }}
+        {{ object.title }}
 
-{% endblock %}
-</body>
+            <select class="form-control">
+            {% for vari_obj in object.variation_set.all %}
+            <option value="{{ vari_obj.id }}">{{ vari_obj }}</option>
+            {% endfor %}
+
+            </select>
+            {% endblock %}
+
+    </body>
 </html>
