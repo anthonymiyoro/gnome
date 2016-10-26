@@ -4,6 +4,8 @@ from django.db.models.signals import post_save
 from django.utils.text import slugify
 
 
+# Create your models here.
+
 class ProductQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
@@ -11,13 +13,12 @@ class ProductQuerySet(models.query.QuerySet):
 
 class ProductManager(models.Manager):
     def get_queryset(self):
-        return ProductQuerySet(self.model, using=self.db)
+        return ProductQuerySet(self.model, using=self._db)
 
     def all(self, *args, **kwargs):
         return self.get_queryset().active()
 
 
-# Create your models here.
 class Product(models.Model):
     title = models.CharField(max_length=120)
     car_year = models.CharField(max_length=120)
@@ -27,22 +28,28 @@ class Product(models.Model):
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     active = models.BooleanField(default=True)
-
+    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
     objects = ProductManager()
+    inventory = models.IntegerField(null=True, blank=True) #refer none == unlimited amount
 
-    def __unicode__(self):
+    def __unicode__(self):  # def __str__(self):
         return self.title
 
     def get_absolute_url(self):
-        return reverse("product_detail", kwargs={"pk":self.pk})
+        return reverse("product_detail", kwargs={"pk": self.pk})
 
 
 class Variation(models.Model):
     title = models.CharField(max_length=120)
-    product = models.ForeignKey(Product)
-    color = models.TextField(blank=True, null=True)
+    car_year = models.CharField(max_length=120)
+    car_manufacturer = models.CharField(max_length=120)
+    car_type = models.CharField(max_length=120)
+    car_model = models.CharField(max_length=120)
+    description = models.TextField(blank=True, null=True)
     price = models.DecimalField(decimal_places=2, max_digits=10)
-    new = models.BooleanField(default=True)
+    active = models.BooleanField(default=True)
+    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
+    inventory = models.IntegerField(null=True, blank=True) #refer none == unlimited amount
 
     def __unicode__(self):
         return self.title
@@ -65,28 +72,26 @@ def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
         new_var.product = product
         new_var.title = "Default"
         new_var.price = product.price
+        new_var.color = product.c
         new_var.save()
 
 
 post_save.connect(product_post_saved_receiver, sender=Product)
 
 
-# change the filename on upload if there are multiple images with the same name
 def image_upload_to(instance, filename):
     title = instance.product.title
     slug = slugify(title)
     basename, file_extension = filename.split(".")
-    new_filename = "%s-%s.%s" %(slug, instance.id, file_extension)
-    return "products/$s/$s" %(slug, new_filename)
+    new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
+    return "products/%s/%s" % (slug, new_filename)
 
 
-# upload product images
 class ProductImage(models.Model):
     product = models.ForeignKey(Product)
-    image = models.ImageField(upload_to='products/')
+    image = models.ImageField(upload_to=image_upload_to)
 
     def __unicode__(self):
         return self.product.title
 
-
-
+        # Product Category
