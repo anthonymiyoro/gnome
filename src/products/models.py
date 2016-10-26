@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.utils.text import slugify
 
 
-
 class ProductQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
@@ -82,12 +81,12 @@ def image_upload_to(instance, filename):
 
 
 # upload product images
-# class ProductImage(models.Model):
-#     product = models.ForeignKey(Product)
-#     image = models.ImageField(upload_to='products/')
-#
-#     def __unicode__(self):
-#         return self.product.title
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product)
+    image = models.ImageField(upload_to='products/')
+
+    def __unicode__(self):
+        return self.product.title
 
 
 
