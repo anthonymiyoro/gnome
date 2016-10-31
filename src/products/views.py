@@ -10,7 +10,11 @@ from django.utils import timezone
 
 from .forms import VariationInventoryFormSet
 from .mixins import StaffRequiredMixin
-from .models import Product, Variation
+from .models import Product, Variation, Category
+
+# class CategoryListView(ListView):
+#     model = Category
+#     queryset = category.objects.all()
 
 
 class VariationListView(StaffRequiredMixin, ListView):
