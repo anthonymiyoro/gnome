@@ -2,46 +2,52 @@
 
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+      <head>
+            <meta charset="utf-8">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge">
+            <meta name="viewport" content="width=device-width, initial-scale=1">
+            <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+            <meta name="description" content="">
+            <meta name="author" content="">
+            <link rel="icon" href="../../favicon.ico">
 
-    <title>{% block head_title %}eCommerce 2{% endblock %}</title>
+            <title>{% block head_title %}eCommerce 2{% endblock %}</title>
 
-    {% include 'head_css.html' %}
+            {% include 'head_css.html' %}
+              <style>
+              {% block style %}{% endblock %}
+              </style>
 
-      <style>
-      {% block style %}{% endblock %}
-      </style>
+      </head>
 
+      <body>
+           {% include 'navbar.html' %}
 
+{#           if messages is triggered, display message#}
+           {% if messages %}
+           <div class="container">
+               <div class="alert alert-success text-center alert-dismissible">
+                   {% for message in messages %}
+                       <p{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</p>
+                       </br>
+                   {% endfor %}
+               </div>
+           </div>
+           {% endif %}
 
-  </head>
+           {% block jumbotron %}
 
-  <body>
-  {% include 'navbar.html' %}
+           {% endblock %}
+            <div class="container">
 
-{% block jumbotron %}
-          
-            {% endblock %}
-    <div class="container">
-            
+                {% block content %}
 
-          
-            {% block content %}
+                {% endblock %}
 
-            {% endblock %}
-              
+            </div> <!-- /container -->
 
-    </div> <!-- /container -->
+           {% include "javascript.html" %}
 
-    {% include "javascript.html" %}
-    
-    
-  </body>
+      </body>
+
 </html>
