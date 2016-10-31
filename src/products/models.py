@@ -21,16 +21,13 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
-    car_year = models.CharField(max_length=120)
-    car_manufacturer = models.CharField(max_length=120)
-    car_type = models.CharField(max_length=120)
-    car_model = models.CharField(max_length=120)
     description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
+    price = models.DecimalField(decimal_places=2, max_digits=20)
     active = models.BooleanField(default=True)
-    sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
+    # slug
+    # inventory?
+
     objects = ProductManager()
-    inventory = models.IntegerField(null=True, blank=True) #refer none == unlimited amount
 
     def __unicode__(self):  # def __str__(self):
         return self.title
@@ -40,16 +37,12 @@ class Product(models.Model):
 
 
 class Variation(models.Model):
+    product = models.ForeignKey(Product)
     title = models.CharField(max_length=120)
-    car_year = models.CharField(max_length=120)
-    car_manufacturer = models.CharField(max_length=120)
-    car_type = models.CharField(max_length=120)
-    car_model = models.CharField(max_length=120)
-    description = models.TextField(blank=True, null=True)
-    price = models.DecimalField(decimal_places=2, max_digits=10)
-    active = models.BooleanField(default=True)
+    price = models.DecimalField(decimal_places=2, max_digits=20)
     sale_price = models.DecimalField(decimal_places=2, max_digits=20, null=True, blank=True)
-    inventory = models.IntegerField(null=True, blank=True) #refer none == unlimited amount
+    active = models.BooleanField(default=True)
+    inventory = models.IntegerField(null=True, blank=True)  # refer none == unlimited amount
 
     def __unicode__(self):
         return self.title
@@ -72,7 +65,6 @@ def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
         new_var.product = product
         new_var.title = "Default"
         new_var.price = product.price
-        new_var.color = product.c
         new_var.save()
 
 
@@ -94,4 +86,4 @@ class ProductImage(models.Model):
     def __unicode__(self):
         return self.product.title
 
-        # Product Category
+# Product Category

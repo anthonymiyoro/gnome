@@ -9,10 +9,11 @@ from django.utils import timezone
 # Create your views here.
 
 from .forms import VariationInventoryFormSet
+from .mixins import StaffRequiredMixin
 from .models import Product, Variation
 
 
-class VariationListView(ListView):
+class VariationListView(StaffRequiredMixin, ListView):
     model = Variation
     queryset = Variation.objects.all()
 
@@ -76,6 +77,8 @@ class ProductListView(ListView):
 
 class ProductDetailView(DetailView):
     model = Product
+# template_name = "product.html"
+# template_name = "<appname>/<modelname>_detail.html"
 
 
 def product_detail_view_func(request, id):
