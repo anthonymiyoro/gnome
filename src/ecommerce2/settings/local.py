@@ -57,8 +57,10 @@ INSTALLED_APPS = (
     'crispy_forms',
     'registration',
     #my apps
+    'analytical',
     'newsletter',
     'products',
+
 )
 
 MIDDLEWARE_CLASSES = (
@@ -148,4 +150,4 @@ SITE_ID = 1
 LOGIN_REDIRECT_URL = '/'
 
 
-
+KISS_METRICS_API_KEY = 'df1d31d24f6633378991c383fe2c62b6e2e046b7'

@@ -1,8 +1,10 @@
+{% load analytical %}
 {% load staticfiles %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
+  {% analytical_head_top %}
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,12 +20,11 @@
       <style>
       {% block style %}{% endblock %}
       </style>
-
-
-
+{% analytical_head_bottom %}
   </head>
 
   <body>
+  {% analytical_body_top %}
   {% include 'navbar.html' %}
 
 {% if messages %}
@@ -61,6 +62,6 @@
         {% endblock %}
     });
     </script>
-
+{% analytical_body_bottom %}
   </body>
 </html>
