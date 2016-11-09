@@ -15,13 +15,6 @@ class ProductQuerySet(models.query.QuerySet):
         return self.filter(active=True)
 
 
-class ProductQuerySet2(models.query.QuerySet):
-    def __init__(self):
-        pass
-
-    def active(self):
-        return self.filter(active=False)
-
 
 class ProductManager(models.Manager):
     def get_queryset(self):
