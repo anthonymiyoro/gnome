@@ -46,7 +46,7 @@ $(".variation_select").change(function(){
 
 <!-- Product Sidebar -->
 <div class='col-sm-4'>
-
+<input id='submit-btn' type='submit' value='Add to Cart' class='btn btn-default' />
 
 {% if object.variation_set.count > 1 %}
 <h3 id='price'>{{ object.variation_set.first.price }}</h3>
@@ -60,11 +60,11 @@ $(".variation_select").change(function(){
 {% else %}
 
 <h3 id='price'>{% if object.variation_set.first.sale_price %}
-{{ object.variation_set.first.sale_price  }}
-<small class='og-price'>{{ object.variation_set.first.price }}</small>
-{% else %}
-{{ object.variation_set.first.price }}
-{% endif %}
+    {{ object.variation_set.first.sale_price  }}
+    <small class='og-price'>{{ object.variation_set.first.price }}</small>
+    {% else %}
+    {{ object.variation_set.first.price }}
+    {% endif %}
 </h3>
 
 

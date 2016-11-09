@@ -6,12 +6,21 @@ from django.utils.safestring import mark_safe
 
 
 
+
 # Create your models here.
 
 
 class ProductQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
+
+
+class ProductQuerySet2(models.query.QuerySet):
+    def __init__(self):
+        pass
+
+    def active(self):
+        return self.filter(active=False)
 
 
 class ProductManager(models.Manager):
@@ -145,6 +154,10 @@ class ProductFeatured(models.Model):
     show_price = models.BooleanField(default=False)
     make_image_background = models.BooleanField(default=False)
     active = models.BooleanField(default=True)
+    list_display = ('first_name', 'last_name')
 
     def __unicode__(self):
         return self.product.title
+
+
+
