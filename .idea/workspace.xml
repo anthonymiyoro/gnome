@@ -2,17 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5dcfb93f-4ef9-4c5c-9753-842bde018e63" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/carts/templates/checkout_view.html" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/static_in_env/static_root/js/custom.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/carts/models.py" afterPath="$PROJECT_DIR$/src/carts/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/carts/views.py" afterPath="$PROJECT_DIR$/src/carts/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ecommerce2/urls.py" afterPath="$PROJECT_DIR$/src/ecommerce2/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/products/models.py" afterPath="$PROJECT_DIR$/src/products/models.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/products/templates/products/product_detail.html" afterPath="$PROJECT_DIR$/src/products/templates/products/product_detail.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/javascript.html" afterPath="$PROJECT_DIR$/src/templates/javascript.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/templates/navbar.html" afterPath="$PROJECT_DIR$/src/templates/navbar.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/static_in_env/static_root/css/custom.css" afterPath="$PROJECT_DIR$/static_in_env/static_root/css/custom.css" />
     </list>
     <ignored path="SpareParts.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -854,7 +846,13 @@
       <option name="project" value="LOCAL" />
       <updated>1478721798588</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Added cart update">
+      <created>1478758875365</created>
+      <option name="number" value="00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1478758875365</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -916,7 +914,8 @@
     <MESSAGE value="Added carts application&#10;" />
     <MESSAGE value="Added cart view" />
     <MESSAGE value="Added cart HTML" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added cart HTML" />
+    <MESSAGE value="Added cart update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added cart update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
