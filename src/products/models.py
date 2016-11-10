@@ -5,15 +5,11 @@ from django.utils.text import slugify
 from django.utils.safestring import mark_safe
 
 
-
-
 # Create your models here.
-
 
 class ProductQuerySet(models.query.QuerySet):
     def active(self):
         return self.filter(active=True)
-
 
 
 class ProductManager(models.Manager):
@@ -53,7 +49,7 @@ class Product(models.Model):
         img = self.productimage_set.first()
         if img:
             return img.image.url
-        return img  # None
+        return img
 
 
 class Variation(models.Model):
@@ -76,13 +72,19 @@ class Variation(models.Model):
     def get_html_price(self):
         if self.sale_price is not None:
             html_text = "<span class='sale-price'>%s</span> <span class='og-price'>%s</span>" % (
-            self.sale_price, self.price)
+                self.sale_price, self.price)
         else:
             html_text = "<span class='price'>%s</span>" % (self.price)
         return mark_safe(html_text)
 
-    def get_absolute_url(self):
-        return self.product.get_absolute_url()
+    def add_to_cart(self):
+        return "%s?item=%s&qty=1" % (reverse("cart"), self.id)
+
+    def remove_from_cart(self):
+        return "%s?item=%s&qty=1&delete=True" % (reverse("cart"), self.id)
+
+    def get_title(self):
+            return "%s - %s" % (self.product.title, self.title)
 
 
 def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
@@ -125,9 +127,9 @@ class Category(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_urls(self):
+        return reverse("category_detail", kwargs={"slug": self.slug})
 
-# def get_absolute_urls(self):
-#     return reverse("category_detail", kwargs={"slug": self.slug })
 
 def image_upload_to_featured(instance, filename):
     title = instance.product.title(default="Title")
@@ -151,6 +153,3 @@ class ProductFeatured(models.Model):
 
     def __unicode__(self):
         return self.product.title
-
-
-
