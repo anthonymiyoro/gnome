@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 {% extends "base.html" %}
 
 
@@ -29,10 +22,14 @@ $(".item-qty").change(function(){
 			$("#jquery-message").text("Added " + data.item_added + " Deleted " + data.deleted)
 			if (data.deleted){
 				$("#item-"+item).fadeOut();
-				$("#subtotal").text("Subtotal: " + data.subtotal);
+				$("#subtotal").text(data.subtotal);
+				$("#taxtotal").text(data.tax_total);
+				$("#carttotal").text(data.cart_total);
 			} else {
 				$("#item-line-total-"+item).text(data.line_total);
-				$("#subtotal").text("Subtotal: " + data.subtotal);
+				$("#subtotal").text(data.subtotal);
+				$("#taxtotal").text(data.tax_total);
+				$("#carttotal").text(data.cart_total);
 			}
 			if (data.total_items == 0 ) {
 				$(".table").fadeOut()
@@ -64,10 +61,15 @@ $(".item-qty").change(function(){
 
 
 <div class='row main-content'>
+
 {% if object.cartitem_set.count < 1 %}
 
 {% include "carts/empty_cart.html" %}
 {% else %}
+
+<div class='col-sm-8 col-sm-offset-2'>
+
+<h1>Your cart</h1>
 <table class='table'>
 
 
@@ -93,14 +95,27 @@ $(".item-qty").change(function(){
 
 
 <tr>
-<td id='subtotal' colspan='4' class='text-right'>Subtotal: {{ object.subtotal }}</td>
+	<td  colspan='4' class='text-right'>Subtotal: <span id='subtotal'>{{ object.subtotal }}</span></td>
+</tr>
 
+<tr>
+	<td colspan='4' class='text-right'>Tax (Estimated): <span id='taxtotal'>{{ object.tax_total }}</span></td>
+</tr>
+
+<tr>
+	<td colspan='4' class='text-right'>Total: <span id='carttotal'>{{ object.total }}</span></td>
+</tr>
+
+
+<tr>
+	<td colspan='4' class='text-right'><a class='btn btn-warning' href="{% url 'checkout' %}">Checkout </a></td>
 </tr>
 
 </table>
 
+
+</div>
 {% endif %}
+
 </div>
 {% endblock %}
-</body>
-</html>
