@@ -61,8 +61,3 @@ class ProductListFilter(admin.SimpleListFilter):
                 value = self.default_value
         return str(value)
 
-
-@admin.register(Breed)
-class BreedAdmin(admin.ModelAdmin):
-    list_display = ('name', 'species', )
-    list_filter = (ProductListFilter, )

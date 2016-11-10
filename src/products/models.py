@@ -8,6 +8,7 @@ from django.utils.safestring import mark_safe
 # Create your models here.
 
 class ProductQuerySet(models.query.QuerySet):
+
     def active(self):
         return self.filter(active=True)
 
@@ -84,7 +85,7 @@ class Variation(models.Model):
         return "%s?item=%s&qty=1&delete=True" % (reverse("cart"), self.id)
 
     def get_title(self):
-            return "%s - %s" % (self.product.title, self.title)
+        return "%s - %s" % (self.product.title, self.title)
 
 
 def product_post_saved_receiver(sender, instance, created, *args, **kwargs):
@@ -102,7 +103,7 @@ post_save.connect(product_post_saved_receiver, sender=Product)
 
 
 def image_upload_to(instance, filename):
-    title = instance.product.title(default="Title")
+    title = instance.product.title
     slug = slugify(title)
     basename, file_extension = filename.split(".")
     new_filename = "%s-%s.%s" % (slug, instance.id, file_extension)
@@ -114,7 +115,7 @@ class ProductImage(models.Model):
     image = models.ImageField(upload_to=image_upload_to)
 
     def __unicode__(self):
-        return self.product.title
+         return self.product.title
 
 
 class Category(models.Model):
