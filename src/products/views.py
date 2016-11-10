@@ -8,7 +8,7 @@ from django.utils import timezone
 
 # Create your views here.
 
-from .forms import VariationInventoryFormSet
+from .forms import VariationInventoryFormSet, SellerProductForm
 from .mixins import StaffRequiredMixin
 from .models import Product, Variation, Category
 
