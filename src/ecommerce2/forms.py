@@ -2,7 +2,7 @@ from django import forms
 from django.db import models
 from django.forms.models import modelformset_factory
 
-from products.models import Product
+from products.models import Product, ProductImage
 
 
 class SellerProductForm(forms.ModelForm):
@@ -15,4 +15,6 @@ class SellerProductForm(forms.ModelForm):
             "active",
             "categories",
             "title",
+            # "image",
         ]
+
