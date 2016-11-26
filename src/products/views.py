@@ -1,7 +1,7 @@
 from django.core.exceptions import ImproperlyConfigured
 from django.contrib import messages
 from django.db.models import Q
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from django.views.generic.detail import DetailView
 from django.views.generic.list import ListView
 from django.shortcuts import render, get_object_or_404, redirect
@@ -176,3 +176,7 @@ def product_detail_view_func(request, id):
         "object": product_instance
     }
     return render(request, template, context)
+
+
+def new_product(request):
+    return HttpResponse("<h1>Hello!</h1>")

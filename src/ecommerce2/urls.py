@@ -30,7 +30,9 @@ urlpatterns = [
     url(r'^checkout/address/$', AddressSelectFormView.as_view(), name='order_address'),
     url(r'^checkout/address/add/$', UserAddressCreateView.as_view(), name='user_address_create'),
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
-    url(r'^seller/(?P<pk>.*)/$', views.new_product, name='new_product'),
+    # url(r'^seller/(?P<pk>.*)/$', views.new_product, name='new_product'),
+    url(r'^new_product/$', 'products.views.new_product', name='new'),
+
 ]
 
 if settings.DEBUG:
