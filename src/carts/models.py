@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.db.models.signals import pre_save, post_save, post_delete
 
-from products.models import Variation
+from products.models import Variation, Product
 
 
 # Create your models here.
