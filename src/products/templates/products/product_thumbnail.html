@@ -12,6 +12,7 @@
 	{% endif %}
 
 	{% if price == "True" %}
+        {{ product.get_description_html }}<br><br>
 		{{ product.variation_set.first.get_html_price }}
 	{% endif %}
 </div>

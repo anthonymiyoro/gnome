@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,12 +8,14 @@
     <title>New Product</title>
 </head>
 <body>
+{% block content %}
 <h1>New Product</h1>
 
 <form method="POST" action="">{% csrf_token %}
     {{ form.as_p }}
-<input type="submit" value="Create Post"/>
+<input href="http://127.0.0.1:8000/" type="submit" value="Create Post"/>
 </form>
+{% endblock %}
 
 </body>
 </html>
