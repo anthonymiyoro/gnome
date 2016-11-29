@@ -29,7 +29,7 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title = models.CharField(max_length=120, default="Title")
-    description = models.TextField(blank=False, null=True)
+    description = models.TextField(blank=False, null=True, max_length=56)
     price = models.DecimalField(decimal_places=2, max_digits=20)
     active = models.BooleanField(default=True)
     categories = models.ManyToManyField('Category', blank=True)
