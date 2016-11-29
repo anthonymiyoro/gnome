@@ -23,3 +23,7 @@
     margin: 0px;
     display:none;
 }
+
+p#hint_id_username {
+ color: white;
+}

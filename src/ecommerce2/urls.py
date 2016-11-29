@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^checkout/final/$', CheckoutFinalView.as_view(), name='checkout_final'),
     # url(r'^seller/(?P<pk>.*)/$', views.new_product, name='new_product'),
     url(r'^new_product/$', 'products.views.new_product', name='new'),
+    url(r'^new_image/$', 'products.views.new_image', name='new1'),
 
 ]
 

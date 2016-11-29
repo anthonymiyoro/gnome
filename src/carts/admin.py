@@ -4,10 +4,8 @@ from django.contrib import admin
 from .models import Cart, CartItem
 from products.models import Product
 
-
 class CartItemInline(admin.TabularInline):
     model = CartItem
-
 
 class CartAdmin(admin.ModelAdmin):
     inlines = [
@@ -19,10 +17,7 @@ class CartAdmin(admin.ModelAdmin):
         model = Cart, Product
 
 
-class ProductAdmin2(admin.ModelAdmin):
-    list_filter = ["title"]
+admin.site.register(Cart, CartAdmin,)
+# admin.site.register(Cart)
 
-    class Meta:
-        model = Product
 
-admin.site.register(Cart, CartAdmin)

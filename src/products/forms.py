@@ -2,7 +2,7 @@ from django import forms
 
 from django.forms.models import modelformset_factory
 
-from .models import Variation, Category, Product
+from .models import Variation, Category, Product, ProductImage
 
 CAT_CHOICES = (
     ('electronics', 'Electronics'),
@@ -44,5 +44,15 @@ class NewProductForm(forms.ModelForm):
             "description",
             "price",
             "categories",
-            "default"
+            "default",
+            # "image",
+        ]
+
+
+class NewImageForm(forms.ModelForm):
+    class Meta:
+        model = ProductImage
+        fields = [
+            "product",
+            "image",
         ]

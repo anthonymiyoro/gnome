@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load staticfiles %}
+{% load crispy_forms_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,11 +12,12 @@
 {% block content %}
 <h1>New Product</h1>
 
-<form method="POST" action="">{% csrf_token %}
+<form method="POST" action="http://127.0.0.1:8000/new_image/">{% csrf_token %}
     {{ form.as_p }}
-<input href="http://127.0.0.1:8000/" type="submit" value="Create Post"/>
+
+<input onclick='location.href = "http://127.0.0.1:8000/new_image/";'type="submit" value="Create Post"/>
+{#<button id="myButton" type="submit" class="float-left submit-button" >Home</button>#}
 </form>
 {% endblock %}
-
 </body>
 </html>

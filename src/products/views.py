@@ -9,7 +9,7 @@ from django.utils import timezone
 
 # Create your views here.
 
-from .forms import VariationInventoryFormSet, ProductFilterForm, NewProductForm
+from .forms import VariationInventoryFormSet, ProductFilterForm, NewProductForm, NewImageForm
 from .mixins import StaffRequiredMixin
 from .models import Product, Variation, Category
 from django_filters import FilterSet, CharFilter, NumberFilter
@@ -181,6 +181,7 @@ def product_detail_view_func(request, id):
 # makes new product
 def new_product(request):
     form = NewProductForm(request.POST or None)
+
     if form.is_valid():
         instance = form.save(commit=False)
         instance.save()
@@ -188,3 +189,15 @@ def new_product(request):
         "form": form
     }
     return render(request, "new.html", context)
+
+
+def new_image(request):
+    form = NewImageForm(request.POST, request.FILES or None)
+
+    if form.is_valid():
+        instance = form.save(commit=False)
+        instance.save()
+    context = {
+        "form": form
+    }
+    return render(request, "new1.html", context)
