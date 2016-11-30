@@ -12,12 +12,34 @@
 {% block content %}
 <h1>New Product</h1>
 
-<form method="POST" action="http://127.0.0.1:8000/new_image/">{% csrf_token %}
-    {{ form.as_p }}
+<form method="POST" action="">{% csrf_token %}
+    {{ form|crispy }}
+    First name:<br>
+  <input type="text" name="firstname"><br>
+  Last name:<br>
 
-<input onclick='location.href = "http://127.0.0.1:8000/new_image/";'type="submit" value="Create Post"/>
+  <input type="text" name="lastname">
+    <br>
+
+  Cardholder Name:<br>
+  <input type="text" name="cvv"><br>
+
+  CVV<br>
+    <input type="text" name="cardno"><br>
+
+  Card Expiry Date:<br>
+  <input type="text" name="expiry"><br>
+
+<br>
+<input type="submit" value="Create Product"/><br>
 {#<button id="myButton" type="submit" class="float-left submit-button" >Home</button>#}
 </form>
+
+    <form action="http://127.0.0.1:8000/new_image/">
+
+    <br><input type="submit" value="Proceed"/>
+    </form>
 {% endblock %}
 </body>
 </html>
+
