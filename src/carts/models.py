@@ -12,7 +12,7 @@ from products.models import Variation, Product
 
 class CartItem(models.Model):
     cart = models.ForeignKey("Cart")
-    item = models.ForeignKey(Product)
+    item = models.ForeignKey(Variation)
     quantity = models.PositiveIntegerField(default=1)
     line_item_total = models.DecimalField(max_digits=10, decimal_places=2)
 
@@ -45,7 +45,7 @@ post_delete.connect(cart_item_post_save_receiver, sender=CartItem)
 
 class Cart(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, blank=True)
-    items = models.ManyToManyField(Product, through=CartItem)
+    items = models.ManyToManyField(Variation, through=CartItem)
     timestamp = models.DateTimeField(auto_now_add=True, auto_now=False)
     updated = models.DateTimeField(auto_now_add=False, auto_now=True)
     subtotal = models.DecimalField(max_digits=50, decimal_places=2, default=25.00)

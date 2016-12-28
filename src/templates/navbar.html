@@ -35,7 +35,7 @@
             <a href='{% url "cart" %}'><i class="fa fa-shopping-cart fa-navbar-cart"></i> <span id="cart-count-badge" class='badge'>{{ request.session.cart_item_count }}</span></a>
           </li>
           {% if user.is_superuser %}
-    <li><a href="http://127.0.0.1:8000/new_product/">New Product</a></li>
+    <li><a href="http://127.0.0.1:8000/new_product/">Add New Product</a></li>
            {% endif %}
           {% if request.user.is_authenticated %}
 {#          <li><a href="{% url 'orders' %}">Orders</a></li>#}

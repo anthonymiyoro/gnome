@@ -1,3 +1,6 @@
+
+
+
 {% extends "base.html" %}
 {% load staticfiles %}
 {% load crispy_forms_tags %}
@@ -13,10 +16,10 @@
 <h1>Add Product Image</h1>
 
 <form method="POST" action="http://127.0.0.1:8000/">{% csrf_token %}
-    {{ form.as_p }}
+    {{ form|crispy }}
 <input href="{% url 'home' %}" type="submit" value="Create Image"/>
 </form>
 {% endblock %}
 
 </body>
-</html>
+</html
