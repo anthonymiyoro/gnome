@@ -39,7 +39,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/Retina/Documents/code/python/SpareParts"
+VIRTUAL_ENV="/user/amiyoro2/"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
